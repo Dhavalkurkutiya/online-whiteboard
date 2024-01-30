@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <p className="p-4">
-      <Button size="sm" variant="default">Login</Button>
-    </p>
+    <div className="flex flex-col gap-y-4">
+      <div>
+        This is screen is for authenticated users only
+      </div>
+      <div>
+        <UserButton />
+      </div>
+    </div>
   );
 }
