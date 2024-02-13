@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
-import { mutation } from "@/convex/_generated/server";
-import { error } from "console";
 
 export const useApiMutation = (mutationFunction: any) => {
 
