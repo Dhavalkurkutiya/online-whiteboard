@@ -1,15 +1,19 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { formatDistanceToNow } from "date-fns";
-import Image from "next/image";
 import Link from "next/link";
-import { Overlay } from "./overlay";
-import { useAuth } from "@clerk/nextjs";
-import { Footer } from "./footer";
-import { Actions } from "@/components/actions";
+import Image from "next/image";
 import { MoreHorizontal } from "lucide-react";
+import { useAuth } from "@clerk/nextjs";
+import { formatDistanceToNow } from "date-fns";
 
+import { api } from "@/convex/_generated/api";
+import { Actions } from "@/components/actions";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+
+import { Overlay } from "./overlay";
+import { Footer } from "./footer";
+import { toast } from "sonner";
 interface BoardCardProps {
     id: string;
     title: string;
@@ -37,6 +41,25 @@ export const BoardCard = ({
     const createdAtLabel = formatDistanceToNow(createdAt, {
         addSuffix: true
     });
+
+    const {
+        mutate: onFavorite,
+        pending: pendingFavorite,
+    } = useApiMutation(api.board.favorite);
+    const {
+        mutate: onUnfavorite,
+        pending: pendingUnfavorite,
+    } = useApiMutation(api.board.unfavorite);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            onUnfavorite({ id })
+                .catch(() => toast.error("Failed to unfavorite"))
+        } else {
+            onFavorite({ id, orgId })
+                .catch(() => toast.error("Failed to favorite"))
+        }
+    };
 
 
     return (
@@ -70,8 +93,8 @@ export const BoardCard = ({
                     title={title}
                     authorLabel={authorLabel}
                     createdAtLabel={createdAtLabel}
-                    onClick={() => { }}
-                    disabled={false}
+                    onClick={toggleFavorite}
+                    disabled={pendingFavorite || pendingUnfavorite}
                 />
             </div>
         </Link>
