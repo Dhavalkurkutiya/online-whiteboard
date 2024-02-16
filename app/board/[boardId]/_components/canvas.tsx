@@ -9,7 +9,7 @@ interface ConvasProps {
 
 }
 
-export const Convas = ({
+export const Canvas = ({
     boardId,
 } :ConvasProps) => {
     return (
