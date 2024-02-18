@@ -8,7 +8,6 @@ import { EmptyBoards } from "./empty-boards";
 import { EmptyFavorites } from "./empty-favorites";
 import { EmptySearch } from "./empty-search";
 import { BoardCard } from "./board-card";
-import { title } from "process";
 import { NewBoardButton } from "./new-board-button";
 
 
