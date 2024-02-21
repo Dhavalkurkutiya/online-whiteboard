@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-js": "^4.70.0",
     "@clerk/nextjs": "^4.29.5",
     "@liveblocks/client": "^1.9.8",
     "@liveblocks/node": "^1.9.8",
@@ -28,7 +29,7 @@
     "date-fns": "^3.3.1",
     "dropdown-menu": "^0.1.1",
     "lucide-react": "^0.314.0",
-    "nanoid": "^5.0.4",
+    "nanoid": "^5.0.6",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
     "perfect-freehand": "^1.2.0",
