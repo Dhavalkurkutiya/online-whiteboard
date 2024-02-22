@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
+import { SelectionBox } from "./selection-box";
 
 import { nanoid } from "nanoid";
 
@@ -141,18 +142,12 @@ export const Canvas = ({ boardId }: ConvasProps) => {
 
       const point = pointerEventToCanvasPoint(e, camera);
 
-
-      if(!self.presence.selection.includes(layerId)){
+      if (!self.presence.selection.includes(layerId)) {
         setMyPresence({ selection: [layerId] }, { addToHistory: true });
       }
-      setCanvasState({mode: CanvasMode.Translating, current: point });
+      setCanvasState({ mode: CanvasMode.Translating, current: point });
     },
-    [
-      setCanvasState,
-      camera,
-      history,
-      canvasState.mode
-    ]
+    [setCanvasState, camera, history, canvasState.mode]
   );
 
   const layerIdsToColorSelection = useMemo(() => {
@@ -200,7 +195,7 @@ export const Canvas = ({ boardId }: ConvasProps) => {
               selectionColor={layerIdsToColorSelection[layerId]}
             />
           ))}
-
+          <SelectionBox onResizeHandlePointerDown={() => {}} />
           <CursorsPresence />
         </g>
       </svg>
