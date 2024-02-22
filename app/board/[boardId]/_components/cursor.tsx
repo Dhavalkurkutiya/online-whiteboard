@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { MousePointer2 } from "lucide-react";
 
-import { connectionIdColor } from "@/lib/utils";
+import { connectionIdToColor } from "@/lib/utils";
 import { useOther } from "@/liveblocks.config";
 
 interface CursorProps {
@@ -39,14 +39,14 @@ export const Cursor = memo(({
             <MousePointer2
                 className="h-5 w-5"
                 style={{
-                    fill: connectionIdColor(connectionId),
-                    color: connectionIdColor(connectionId),
+                    fill: connectionIdToColor(connectionId),
+                    color: connectionIdToColor(connectionId),
                 }}
             />
             <div 
             className="absolate left-5 px-1.5 py-0.5 rounded-md text-xs text-white font-semibold"
             style={{
-                backgroundColor: connectionIdColor(connectionId),
+                backgroundColor: connectionIdToColor(connectionId),
             }}
             >
                 {name}
