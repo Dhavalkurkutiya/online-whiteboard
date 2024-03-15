@@ -1,10 +1,13 @@
+import { createClient } from "@liveblocks/client";
+import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
+
+
 import { 
   LiveList,
   LiveMap,
   LiveObject,
 } from "@liveblocks/client";
-import { createClient } from "@liveblocks/client";
-import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
+
 import { Layer, Color } from "@/types/canvas";
   
 const client = createClient({
@@ -24,7 +27,7 @@ const client = createClient({
     
     return [];
   },
-  async resolveMentionSuggestions({ text , roomId}) {
+  async resolveMentionSuggestions({ text, roomId }) {
     // Used only for Comments. Return a list of userIds that match `text`.
     // These userIds are used to create a mention list when typing in the
     // composer. 
@@ -36,19 +39,6 @@ const client = createClient({
     // const users = await getUsers({ search: text });
     // return users.map((user) => user.id);
 
-    return [];
-  },
-  async resolveRoomsInfo({ roomIds }) {
-    // Used only for Comments and Notifications. Return a list of room information
-    // retrieved from `roomIds`.
-    
-    // const roomsData = await __fetchRoomsFromDB__(roomIds);
-    // 
-    // return roomsData.map((roomData) => ({
-    //   name: roomData.name,
-    //   url: roomData.url,
-    // }));
-    
     return [];
   },
 });
@@ -63,7 +53,6 @@ type Presence = {
   penColor: Color | null;
 };
 
-
 // Optionally, Storage represents the shared document that persists in the
 // Room, even after all users leave. Fields under Storage typically are
 // LiveList, LiveMap, LiveObject instances, for which updates are
@@ -72,6 +61,7 @@ type Storage = {
   layers: LiveMap<string, LiveObject<Layer>>;
   layerIds: LiveList<string>;
 };
+
 // Optionally, UserMeta represents static/readonly metadata on each user, as
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
@@ -98,7 +88,6 @@ export type ThreadMetadata = {
   // time: number;
 };
 
-
 // Room-level hooks, use inside `RoomProvider`
 export const {
   suspense: {
@@ -109,7 +98,6 @@ export const {
     useSelf,
     useOthers,
     useOthersMapped,
-    useOthersListener,
     useOthersConnectionIds,
     useOther,
     useBroadcastEvent,
@@ -136,11 +124,6 @@ export const {
     useDeleteComment,
     useAddReaction,
     useRemoveReaction,
-    useThreadSubscription,
-    useMarkThreadAsRead,
-    useRoomNotificationSettings,
-    useUpdateRoomNotificationSettings,
-  
     // These hooks can be exported from either context
     // useUser,
     // useRoomInfo
