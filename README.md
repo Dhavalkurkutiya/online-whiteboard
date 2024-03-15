@@ -23,7 +23,7 @@ Features:
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/Dhavalkurkutiya/Online-Whiteboard-for-Realtime-Collaboration.git
+git clone https://github.com/Dhavalkurkutiya/online-whiteboard.git
 ```
 
 ### Install packages
