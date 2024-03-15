@@ -1,7 +1,6 @@
 import { createClient } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
-
-
+  
 import { 
   LiveList,
   LiveMap,
@@ -39,6 +38,19 @@ const client = createClient({
     // const users = await getUsers({ search: text });
     // return users.map((user) => user.id);
 
+    return [];
+  },
+  async resolveRoomsInfo({ roomIds }) {
+    // Used only for Comments and Notifications. Return a list of room information
+    // retrieved from `roomIds`.
+    
+    // const roomsData = await __fetchRoomsFromDB__(roomIds);
+    // 
+    // return roomsData.map((roomData) => ({
+    //   name: roomData.name,
+    //   url: roomData.url,
+    // }));
+    
     return [];
   },
 });
@@ -98,6 +110,7 @@ export const {
     useSelf,
     useOthers,
     useOthersMapped,
+    useOthersListener,
     useOthersConnectionIds,
     useOther,
     useBroadcastEvent,
@@ -124,6 +137,11 @@ export const {
     useDeleteComment,
     useAddReaction,
     useRemoveReaction,
+    useThreadSubscription,
+    useMarkThreadAsRead,
+    useRoomNotificationSettings,
+    useUpdateRoomNotificationSettings,
+  
     // These hooks can be exported from either context
     // useUser,
     // useRoomInfo
