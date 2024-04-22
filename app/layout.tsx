@@ -6,10 +6,12 @@ import { Toaster } from "sonner";
 import { ModalProvider } from "@/providers/modal-provider";
 const inter = Inter({ subsets: ["latin"] });
 
+
 export const metadata: Metadata = {
-  title: "Online-Whiteboard-for-Realtime-Collaboration",
+  title: "Whiteboard, Visual Workspace for Innovation'",
   description: "An Online Whiteboard for Realtime Collaboration is a digital platform that enables individuals or teams to collaborate in real-time, replicating the experience of a physical whiteboard but in a virtual space",
 };
+
 
 export default function RootLayout({
   children,
