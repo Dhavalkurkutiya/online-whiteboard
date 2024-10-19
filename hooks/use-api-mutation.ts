@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useMutation } from "convex/react";
+import { useState } from 'react';
+import { useMutation } from 'convex/react';
 
 export const useApiMutation = (mutationFunction: any) => {
   const [pending, setPending] = useState(false);
@@ -12,7 +12,7 @@ export const useApiMutation = (mutationFunction: any) => {
       .then((result) => {
         return result;
       })
-      .catch ((error) => {
+      .catch((error) => {
         throw error;
       });
   };
