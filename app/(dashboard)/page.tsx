@@ -2,6 +2,7 @@
 import { useOrganization } from "@clerk/nextjs";
 import { EmptyOrg } from "./_components/empty-org";
 import { BoardList } from "./_components/board-list";
+import { FilterBar } from "./_components/filter-bar";
 
 interface DashbordPageProps {
     searchParams: {
@@ -9,7 +10,6 @@ interface DashbordPageProps {
         favorites?: string;
     };
 };
-
 
 const DashbordPage = ({
     searchParams,
@@ -21,10 +21,13 @@ const DashbordPage = ({
            {!organization ? (
             <EmptyOrg />
            ): (
-            <BoardList
-            orgId = {organization.id}
-            query={searchParams}
-            />
+            <>
+              <FilterBar />
+              <BoardList
+                orgId={organization.id}
+                query={searchParams}
+              />
+            </>
            )}
         </div>
      );
