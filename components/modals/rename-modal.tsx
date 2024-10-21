@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { FormEventHandler, useEffect, useState } from 'react';
-import { toast } from 'sonner';
+import { FormEventHandler, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import {
   Dialog,
@@ -11,17 +11,24 @@ import {
   DialogClose,
   DialogFooter,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useRenameModal } from '@/store/use-rename-modal';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useApiMutation } from '@/hooks/use-api-mutation';
-import { api } from '@/convex/_generated/api';
+} from "@/components/ui/dialog";
+import { useRenameModal } from "@/store/use-rename-modal";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
 
 export const RenameModal = () => {
-  const { mutate, pending } = useApiMutation(api.board.update);
+  const { 
+    mutate, 
+    pending
+  } = useApiMutation(api.board.update);
 
-  const { isOpen, onClose, initialValues } = useRenameModal();
+  const {
+    isOpen,
+    onClose,
+    initialValues,
+  } = useRenameModal();
 
   const [title, setTitle] = useState(initialValues.title);
 
@@ -29,7 +36,9 @@ export const RenameModal = () => {
     setTitle(initialValues.title);
   }, [initialValues.title]);
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = (
+    e,
+  ) => {
     e.preventDefault();
 
     mutate({
@@ -37,19 +46,23 @@ export const RenameModal = () => {
       title,
     })
       .then(() => {
-        toast.success('Board renamed');
+        toast.success("Board renamed");
         onClose();
       })
-      .catch(() => toast.error('Failed to rename board'));
+      .catch(() => toast.error("Failed to rename board"));
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit board title</DialogTitle>
+          <DialogTitle>
+            Edit board title
+          </DialogTitle>
         </DialogHeader>
-        <DialogDescription>Enter a new title for this board</DialogDescription>
+        <DialogDescription>
+          Enter a new title for this board
+        </DialogDescription>
         <form onSubmit={onSubmit} className="space-y-4">
           <Input
             disabled={pending}

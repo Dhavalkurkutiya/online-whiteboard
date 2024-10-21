@@ -1,7 +1,7 @@
-import { v } from 'convex/values';
-import { getAllOrThrow } from 'convex-helpers/server/relationships';
+import { v } from "convex/values";
+import { getAllOrThrow } from "convex-helpers/server/relationships";
 
-import { query } from './_generated/server';
+import { query } from "./_generated/server";
 
 export const get = query({
   args: {
@@ -13,16 +13,18 @@ export const get = query({
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
-      throw new Error('Unauthorized');
+      throw new Error("Unauthorized");
     }
 
     if (args.favorites) {
       const favoritedBoards = await ctx.db
-        .query('userFavorites')
-        .withIndex('by_user_org', (q) =>
-          q.eq('userId', identity.subject).eq('orgId', args.orgId)
+        .query("userFavorites")
+        .withIndex("by_user_org", (q) => 
+          q
+            .eq("userId", identity.subject)
+            .eq("orgId", args.orgId)
         )
-        .order('desc')
+        .order("desc")
         .collect();
 
       const ids = favoritedBoards.map((b) => b.boardId);
@@ -40,24 +42,28 @@ export const get = query({
 
     if (title) {
       boards = await ctx.db
-        .query('boards')
-        .withSearchIndex('search', (q) =>
-          q.search('title', title).eq('orgId', args.orgId)
+        .query("boards")
+        .withSearchIndex("search", (q) => 
+          q
+            .search("title", title)
+            .eq("orgId", args.orgId)
         )
         .collect();
     } else {
       boards = await ctx.db
-        .query('boards')
-        .withIndex('by_org', (q) => q.eq('orgId', args.orgId))
-        .order('desc')
+        .query("boards")
+        .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
+        .order("desc")
         .collect();
     }
 
     const boardsWithFavoriteRelation = boards.map((board) => {
       return ctx.db
-        .query('userFavorites')
-        .withIndex('by_user_board', (q) =>
-          q.eq('userId', identity.subject).eq('boardId', board._id)
+        .query("userFavorites")
+        .withIndex("by_user_board", (q) => 
+          q
+            .eq("userId", identity.subject)
+            .eq("boardId", board._id)
         )
         .unique()
         .then((favorite) => {

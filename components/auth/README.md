@@ -1,6 +1,8 @@
 # Build a Real-Time Miro Clone With Nextjs, React, Tailwind (2024)
 
+
 This is a repository for a Build a Real-Time Real-time Collaboration Whitebord With Nextjs, React, Tailwind (2024).
+
 
 Features:
 
@@ -10,9 +12,9 @@ Features:
 - 🎨 Coloring system
 - ↩️ Undo & Redo functionality
 - ⌨️ Keyboard shortcuts
-- 🤝 Real-time collaboration
-- 💾 Real-time database
-- 🔐 Auth, organisations and invites
+- 🤝 Real-time collaboration 
+- 💾 Real-time database 
+- 🔐 Auth, organisations and invites 
 - ⭐️ Favoriting functionality
 - 🌐 Next.js 14 framework
 - 💅 TailwindCSS & ShadcnUI styling
@@ -24,7 +26,7 @@ Features:
 ### Cloning the repository
 
 ```shell
-git clone
+git clone 
 ```
 
 ### Install packages
@@ -34,6 +36,7 @@ npm i
 ```
 
 ### Setup .env file
+
 
 ```js
 CONVEX_DEPLOYMENT=
