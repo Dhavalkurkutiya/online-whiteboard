@@ -1,37 +1,33 @@
-import { createClient } from "@liveblocks/client";
-import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
-  
-import { 
-  LiveList,
-  LiveMap,
-  LiveObject,
-} from "@liveblocks/client";
+import { createClient } from '@liveblocks/client';
+import { createRoomContext, createLiveblocksContext } from '@liveblocks/react';
 
-import { Layer, Color } from "@/types/canvas";
-  
+import { LiveList, LiveMap, LiveObject } from '@liveblocks/client';
+
+import { Layer, Color } from '@/types/canvas';
+
 const client = createClient({
   // publicApiKey: "",
-  authEndpoint: "/api/liveblocks-auth",
+  authEndpoint: '/api/liveblocks-auth',
   throttle: 16,
   async resolveUsers({ userIds }) {
     // Used only for Comments and Notifications. Return a list of user information
     // retrieved from `userIds`. This info is used in comments, mentions etc.
-    
+
     // const usersData = await __fetchUsersFromDB__(userIds);
-    // 
+    //
     // return usersData.map((userData) => ({
     //   name: userData.name,
     //   avatar: userData.avatar.src,
     // }));
-    
+
     return [];
   },
   async resolveMentionSuggestions({ text, roomId }) {
     // Used only for Comments. Return a list of userIds that match `text`.
     // These userIds are used to create a mention list when typing in the
-    // composer. 
+    // composer.
     //
-    // For example when you type "@jo", `text` will be `"jo"`, and 
+    // For example when you type "@jo", `text` will be `"jo"`, and
     // you should to return an array with John and Joanna's userIds:
     // ["john@example.com", "joanna@example.com"]
 
@@ -43,14 +39,14 @@ const client = createClient({
   async resolveRoomsInfo({ roomIds }) {
     // Used only for Comments and Notifications. Return a list of room information
     // retrieved from `roomIds`.
-    
+
     // const roomsData = await __fetchRoomsFromDB__(roomIds);
-    // 
+    //
     // return roomsData.map((roomData) => ({
     //   name: roomData.name,
     //   url: roomData.url,
     // }));
-    
+
     return [];
   },
 });
@@ -59,7 +55,7 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  cursor: { x: number, y: number } | null,
+  cursor: { x: number; y: number } | null;
   selection: string[];
   pencilDraft: [x: number, y: number, pressure: number][] | null;
   penColor: Color | null;
@@ -141,12 +137,14 @@ export const {
     useMarkThreadAsRead,
     useRoomNotificationSettings,
     useUpdateRoomNotificationSettings,
-  
+
     // These hooks can be exported from either context
     // useUser,
     // useRoomInfo
-  }
-} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(client);
+  },
+} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
+  client
+);
 
 // Project-level hooks, use inside `LiveblocksProvider`
 export const {
@@ -156,9 +154,9 @@ export const {
     useMarkAllInboxNotificationsAsRead,
     useInboxNotifications,
     useUnreadInboxNotificationsCount,
-  
+
     // These hooks can be exported from either context
     useUser,
     useRoomInfo,
-  }
+  },
 } = createLiveblocksContext<UserMeta, ThreadMetadata>(client);

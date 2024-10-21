@@ -1,13 +1,19 @@
-import { useState } from "react";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { GridIcon, ListIcon } from "lucide-react";
+import { useState } from 'react';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { GridIcon, ListIcon } from 'lucide-react';
 
 export const FilterBar = () => {
-  const [filter, setFilter] = useState("all");
-  const [ownership, setOwnership] = useState("anyone");
-  const [sortBy, setSortBy] = useState("last-opened");
-  const [viewMode, setViewMode] = useState("grid");
+  const [filter, setFilter] = useState('all');
+  const [ownership, setOwnership] = useState('anyone');
+  const [sortBy, setSortBy] = useState('last-opened');
+  const [viewMode, setViewMode] = useState('grid');
 
   return (
     <div className="flex items-center justify-between mb-4">
@@ -43,14 +49,14 @@ export const FilterBar = () => {
       </div>
       <div className="flex space-x-2">
         <Button
-          variant={viewMode === "grid" ? "default" : "outline"}
-          onClick={() => setViewMode("grid")}
+          variant={viewMode === 'grid' ? 'default' : 'outline'}
+          onClick={() => setViewMode('grid')}
         >
           <GridIcon className="h-4 w-4" />
         </Button>
         <Button
-          variant={viewMode === "list" ? "default" : "outline"}
-          onClick={() => setViewMode("list")}
+          variant={viewMode === 'list' ? 'default' : 'outline'}
+          onClick={() => setViewMode('list')}
         >
           <ListIcon className="h-4 w-4" />
         </Button>
